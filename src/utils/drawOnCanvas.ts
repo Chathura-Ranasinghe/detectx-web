@@ -17,26 +17,27 @@ export function drawOnCanvas(
       ctx.beginPath();
 
       // styling
-      ctx.strokeStyle = "#FF0F0F"; // Set color for "person"
-      ctx.lineWidth = 2; // Set the line width for the boundary box
+      ctx.fillStyle = "#FF0F0F"; // Set color for "person"
+      ctx.globalAlpha = 0.4;
 
       if (mirrored) {
-        ctx.rect(ctx.canvas.width - x - width, y, width, height);
+        ctx.roundRect(ctx.canvas.width - x, y, -width, height, 8);
       } else {
-        ctx.rect(x, y, width, height);
+        ctx.roundRect(x, y, width, height, 8);
       }
 
-      // draw stroke
-      ctx.stroke();
+      // draw stroke or fill
+      ctx.fill();
 
       // text styling
       ctx.font = "12px Courier New";
       ctx.fillStyle = 'black';
+      ctx.globalAlpha = 1;
 
       if (mirrored) {
-        ctx.fillText(name, ctx.canvas.width - x - width + 10, y + 20);
+        ctx.fillText("Human Detected", ctx.canvas.width - x - width + 10, y + 20);
       } else {
-        ctx.fillText(name, x + 10, y + 20);
+        ctx.fillText("Human Detected", x + 10, y + 20);
       }
     }
   });

@@ -17,7 +17,7 @@ const Observation: React.FC<ObservationProps> = ({ webcamOn, flip, webcamRef, ca
   };
 
   return (
-    <div className="h-full flex-1 rounded-lg border-2 relative flex items-center justify-center">
+    <div className="h-full flex-1 rounded-lg border-2 relative flex items-center justify-center px-5">
       {webcamOn && (
       <div className='relative'>
         <div className='relative h-full w-full'>
