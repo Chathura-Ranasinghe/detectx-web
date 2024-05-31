@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import logo from '../assets/logo.png';
+import { ModeToggle } from "./ui/Darkmode/mode-toggle";
+import { Zap } from 'lucide-react';
 
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent,PopoverTrigger } from "@/components/ui/popover";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 import { CircleHelp, PersonStanding, Video, VideoOff, FlipHorizontal, Aperture, Cctv, Volume2, VolumeX } from 'lucide-react';
@@ -43,14 +43,11 @@ const Navbar: React.FC<NavbarProps> = ({
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="flex flex-col h-full justify-between rounded-lg border-2 w-28 p-2">
+    <div className="flex flex-col h-full justify-between rounded-lg border-2 w-20 p-2">
 
           <div>
             <div className="flex justify-center h-20 items-center">
-            <Avatar>
-                <AvatarImage src={logo} alt="@shadcn" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+            <Zap fill="#3e9392" strokeWidth={0} />
             </div>
             <Separator />
           </div>
@@ -76,35 +73,38 @@ const Navbar: React.FC<NavbarProps> = ({
                     </DialogContent>
                   </Dialog>
                 </div>
+                <div className="flex justify-center items-center">
+                  <ModeToggle />
+                </div>
               </div>
 
               <div>
                 <div className="flex justify-center h-16 items-center">
-                  <Button variant="outline" size="icon"  disabled={!webcamOn} onClick={onFlipToggle}>
+                  <Button variant="secondary" size="icon"  disabled={!webcamOn} onClick={onFlipToggle}>
                     <FlipHorizontal />
                   </Button>
                 </div>
                 <div className="flex justify-center h-16 items-center">
                   <Button 
-                  variant={webcamOn ? 'destructive' : 'outline'} 
+                  variant={webcamOn ? 'destructive' : 'secondary'} 
                   size="icon" 
                   onClick={onWebcamToggle}>
                     <Cctv/>
                   </Button>
                 </div>
                 <div className="flex justify-center h-16 items-center">
-                  <Button variant={recording ? 'destructive' : 'outline'}  size="icon"  disabled={!webcamOn} onClick={onRecordingToggle}>
+                  <Button variant={recording ? 'destructive' : 'secondary'}  size="icon"  disabled={!webcamOn} onClick={onRecordingToggle}>
                     {recording ? <Video /> : <VideoOff />}
                   </Button>
                 </div>
                 <div className="flex justify-center h-16 items-center">
-                  <Button variant="outline" size="icon"  disabled={!webcamOn} onClick={onScreenshotToggle}>
+                  <Button variant="secondary" size="icon"  disabled={!webcamOn} onClick={onScreenshotToggle}>
                     <Aperture />
                   </Button>
                 </div>
                 <div className="flex justify-center h-16 items-center">
                   <Button 
-                  variant={autorecording ? 'destructive' : 'outline'} 
+                  variant={autorecording ? 'destructive' : 'secondary'} 
                   size="icon"  
                   disabled={!webcamOn} 
                   onClick={onAutoRecordingToggle}>
