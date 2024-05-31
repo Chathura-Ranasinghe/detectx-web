@@ -17,22 +17,21 @@ export function drawOnCanvas(
       ctx.beginPath();
 
       // styling
-      ctx.fillStyle = "#FF0F0F"; // Set color for "person"
-      ctx.globalAlpha = 0.4;
+      ctx.strokeStyle = "#FF0F0F"; // Set color for "person"
+      ctx.lineWidth = 2; // Set the line width for the boundary box
 
       if (mirrored) {
-        ctx.roundRect(ctx.canvas.width - x, y, -width, height, 8);
+        ctx.rect(ctx.canvas.width - x - width, y, width, height);
       } else {
-        ctx.roundRect(x, y, width, height, 8);
+        ctx.rect(x, y, width, height);
       }
 
-      // draw stroke or fill
-      ctx.fill();
+      // draw stroke
+      ctx.stroke();
 
       // text styling
       ctx.font = "12px Courier New";
       ctx.fillStyle = 'black';
-      ctx.globalAlpha = 1;
 
       if (mirrored) {
         ctx.fillText(name, ctx.canvas.width - x - width + 10, y + 20);
